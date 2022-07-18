@@ -28,7 +28,7 @@
             },
             "require-dev": {
                 "doctrine/cache": "^1.11 || ^2.0",
-                "doctrine/coding-standard": "^6.0 || ^8.1",
+                "doctrine/coding-standard": "^6.0 || ^8.0",
                 "phpstan/phpstan": "^1.4.10 || ^1.8.0",
                 "phpunit/phpunit": "^7.5 || ^8.0 || ^9.1.5",
                 "symfony/cache": "^4.4 || ^5.2",
@@ -2856,7 +2856,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1"
+                "php": ">=8.0"
             },
             "type": "library",
             "extra": {
@@ -3340,7 +3340,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
+                "php": ">=8.0",
                 "psr/event-dispatcher": "^1"
             },
             "suggest": {
