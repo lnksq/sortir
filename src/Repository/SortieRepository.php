@@ -39,6 +39,11 @@ class SortieRepository extends ServiceEntityRepository
         }
     }
 
+
+    public function findSorties()
+    {
+        //creer request
+    }
 //    /**
 //     * @return Sortie[] Returns an array of Sortie objects
 //     */
