@@ -1,19 +1,52 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.1.0/dist/axentix.min.css">
+        {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <title>Axentix Layout</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.1.0/dist/axentix.min.css">
+    </head>
+
+    <body class="layout">
+    <header>
+        <nav class="navbar shadow-1 primary">
+            <a href="#" target="_blank" class="navbar-brand">Sortir.com</a>
+            <div class="navbar-menu ml-auto">
+                <a class="navbar-link" href="#">Villes</a>
+                <a class="navbar-link" href="#">Campus</a>
+                <a class="navbar-link" href="#">Accueil</a>
+                <a class="navbar-link" href="#">Mon Profil</a>
+                <a class="navbar-link" href="#">Se déconnecter</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h5>Filtrer les sorties</h5>
+    </main>
+
+    <footer class="footer primary">
+        Copyright © 2022 - Example
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axentix@2.1.0/dist/axentix.min.js"></script>
     </body>
+    </html>
+        {% block body %}{% endblock %}
+
+        <script src="https://cdn.jsdelivr.net/npm/axentix@2.1.0/dist/axentix.min.js"></script>
+        {% block javascripts %}{% endblock %}
+</body>
 </html>
