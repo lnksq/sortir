@@ -18,6 +18,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.1.0/dist/axentix.min.css">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
     </head>
 
     <body class="layout">
@@ -35,6 +37,7 @@
     </header>
 
     <main>
+        {% block body %}{% endblock %}
         <h5>Filtrer les sorties</h5>
     </main>
 
@@ -44,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axentix@2.1.0/dist/axentix.min.js"></script>
     </body>
     </html>
-        {% block body %}{% endblock %}
+
 
         <script src="https://cdn.jsdelivr.net/npm/axentix@2.1.0/dist/axentix.min.js"></script>
         {% block javascripts %}{% endblock %}
