@@ -24,7 +24,7 @@ class SortieController extends AbstractController
 
     public function list(SortieRepository $sortieRepository): Response
     {
-    $sorties= $sortieRepository->findBy([], [ 'dateHeureDebut' => 'DESC'], 50);
+    $sorties= $sortieRepository->findBy([], [ 'dateHeureDebut' => 'DESC'], 20);
         return $this->render('sortie/list.html.twig', [
             "sorties" => $sorties
         ]);
