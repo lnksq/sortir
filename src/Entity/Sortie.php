@@ -32,6 +32,11 @@ class Sortie
     #[ORM\Column(length: 255)]
     private ?string $infosSortie = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Etat $etat = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,4 +113,19 @@ class Sortie
 
         return $this;
     }
+
+    public function getEtat(): ?Etat
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(?Etat $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+  
+
 }
