@@ -17,13 +17,16 @@
                {%  for sortie in sorties %}
                    <tr>
                    <td> {{ sortie.nom }}</td>
-                   <td> {{ sortie.dateHeureDebut |date('d-m-Y') }}</td>
-                   <td> {{  sortie.dateLimiteInscription|date('d-m-Y') }}</td>
+                   <td> {{ sortie.dateHeureDebut | date('d/m/Y H:i') }}</td>
+                   <td> {{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>
                    <td> {{ sortie.nbInscriptionMax }}</td>
                    <td>{{ sortie.etat.libelle }}</td>
                    <td> </td>
                    <td> </td>
-                   <td></td>
+                   <td>
+                       {%  if(sortie.etat.libelle != "Créée") %}
+                       <a href="{{  path('sortie_details', {'id': sortie.id}) }}" title="Afficher une Sortie">Afficher</a></td>
+                       {% endif %}
                    </tr>
             {%  endfor %}
         </table>

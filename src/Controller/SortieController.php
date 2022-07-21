@@ -14,12 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/sorties", name="sortie_")
+ * @Route("/sortie", name="sortie_")
  */
 class SortieController extends AbstractController
 {
     /**
-     * @Route("/", name="list")
+     * @Route("/list", name="list")
      */
 
     public function list(SortieRepository $sortieRepository): Response
@@ -38,12 +38,30 @@ class SortieController extends AbstractController
         $sortie = new Sortie();
         $sortieForm = $this->createForm(SortieType::class, $sortie);
 
+        $sortieForm->handleRequest($request);
 
-
-        return $this->render("sortie/create.html.twig", [
-                "sortieForm" => $sortieForm->createView()
-        ]);
+        if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
+            $entityManager->persist($sortie);
+            $entityManager->flush();
         }
+        return $this->render('sortie/create.html.twig', [
+            'sortieForm' => $sortieForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/details/{id}", name="details")
+     */
+
+    public function details(int $id, SortieRepository $sortieRepository): Response
+    {
+        $sortie= $sortieRepository->find($id);
+
+        return $this->render('sortie/details.html.twig', [
+            "sortie" => $sortie
+        ]);
+    }
+
 
 
 
