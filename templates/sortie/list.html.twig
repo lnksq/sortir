@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{%  block body %}
+    <section class="sorties-list">
+           <table>
+            <caption> Affichage de toutes les sorties</caption>
+            <tr>
+                <th scope="col">Nom de la sortie</th>
+                <th scope="col">Date de la sortie</th>
+                <th scope="col">Clôture</th>
+                <th scope="col">inscrits/places</th>
+                <th scope="col">Etat</th>
+                <th scope="col">Inscrit</th>
+                <th scope="col">Organisateur</th>
+                <th scope="col">Actions</th>
+            </tr>
+               {%  for sortie in sorties %}
+                   <tr>
+                   <td> {{ sortie.nom }}</td>
+                   <td> {{ sortie.dateHeureDebut |date('d-m-Y') }}</td>
+                   <td> {{  sortie.dateLimiteInscription|date('d-m-Y') }}</td>
+                   <td> {{ sortie.nbInscriptionMax }}</td>
+                   <td>{{ sortie.etat.libelle }}</td>
+                   <td> </td>
+                   <td> </td>
+                   <td></td>
+                   </tr>
+            {%  endfor %}
+        </table>
+
+    </section>
+{% endblock %}
