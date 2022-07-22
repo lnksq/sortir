@@ -9,6 +9,14 @@
         <div>Nombre de places : {{ sortie.nbInscriptionMax}} </div>
         <div>Durée: {{ sortie.duree }}  minutes</div>
         <div>Description et infos {{ sortie.infosSortie }}</div>
+        <div>Campus :{{ sortie.campus.nom}}</div>
+        <div>Lieu : {{ sortie.lieu.nom }}</div>
+        <div>Rue : {{ sortie.lieu.rue }}</div>
+        <div>Code Postal : {{ sortie.lieu.ville.codePostal }}</div>
+        <div>Latitude : {{ sortie.lieu.latitude }}</div>
+        <div>Longitude : {{ sortie.lieu.longitude }}</div>
+
+
     </div>
 
     <div>
