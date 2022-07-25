@@ -27,13 +27,15 @@ class SortieController extends AbstractController
 
     public function list(SortieRepository $sortieRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
-    $sorties= $sortieRepository->findBy([], [ 'dateHeureDebut' => 'DESC'], 20);
+        $sorties= $sortieRepository->findBy([], [ 'dateHeureDebut' => 'DESC'], 20);
         $filtresSorties = new FiltresSorties();
         $rechercheForm = $this->createForm(FiltreSortieType::class, $filtresSorties);
 
         $rechercheForm->handleRequest($request);
 
         if ($rechercheForm->isSubmitted() && $rechercheForm->isValid()) {
+
+            if( $rechercheForm->get('campus') != null)
             $entityManager->persist($filtresSorties);
             $entityManager->flush();
         }

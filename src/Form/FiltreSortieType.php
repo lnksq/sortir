@@ -28,22 +28,33 @@ class FiltreSortieType extends AbstractType
 
             ])
             ->add('motRecherche', SearchType::class, [
-                'label' => 'La nom de la sortie contient :'
-    ])
+                'label' => 'La nom de la sortie contient :',
+                "required" => false
+            ])
             ->add('premiereDate', DateType::class, [
-            'label'=> 'Entre',  'html5'=> true, 'widget' => 'single_text'])
+            'label'=> 'Entre',  'html5'=> true, 'widget' => 'single_text',
+                "required" => false
+            ])
             ->add('derniereDate', DateType::class, [
-                'label'=> 'et',  'html5'=> true, 'widget' => 'single_text'])
+                'label'=> 'et',  'html5'=> true, 'widget' => 'single_text',
+                "required" => false
+            ])
             ->add('organisateur', CheckboxType::class, [
-                'label' => "Sorties dont je suis l'organisateur/trice", 'required'=>false
+                'label' => "Sorties dont je suis l'organisateur/trice",
+                'required'=>false
             ])
             ->add('inscrit', CheckboxType::class, [
-                'label' => 'Sorties auxquelles je suis inscrit/e' , 'required'=>false])
+                'label' => 'Sorties auxquelles je suis inscrit/e' ,
+                'required'=>false
+            ])
             ->add('pasInscrit', CheckboxType::class, [
-                'label' => 'Sorties auxquelles je ne suis pas inscrit/e' , 'required'=>false])
+                'label' => 'Sorties auxquelles je ne suis pas inscrit/e' ,
+                'required'=>false
+            ])
             ->add('SortiesPasses', CheckboxType::class, [
                 'label'=> 'Sorties passées', 'mapped'=> false,
-                'required'=>false])
+                'required'=>false
+            ])
         ;
     }
 
