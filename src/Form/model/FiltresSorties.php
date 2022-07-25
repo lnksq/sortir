@@ -3,17 +3,18 @@
 namespace App\Form\model;
 
 use phpDocumentor\Reflection\Types\Boolean;
+use Symfony\Component\Form\AbstractType;
 
-class filtresSorties
+class FiltresSorties extends AbstractType
 {
     private ?string $campus;
     private ?string $motRecherche;
     private ?\DateTimeInterface $premiereDate;
-    private ?\DateTimeInterface $derniereData;
+    private ?\DateTimeInterface $derniereDate;
     private ?Boolean $organisateur;
     private ?Boolean $inscrit;
     private ?Boolean $pasInscrit;
-    private ?\DateTimeInterface $sortiePassees;
+    private ?Boolean $sortiesPassees;
 
     /**
      * @return string|null
@@ -42,9 +43,9 @@ class filtresSorties
     /**
      * @return \DateTimeInterface|null
      */
-    public function getDerniereData(): ?\DateTimeInterface
+    public function getDerniereDate(): ?\DateTimeInterface
     {
-        return $this->derniereData;
+        return $this->derniereDate;
     }
 
     /**
@@ -72,11 +73,11 @@ class filtresSorties
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return bool|null
      */
-    public function getSortiePassees(): ?\DateTimeInterface
+    public function getSortiesPassees(): ?bool
     {
-        return $this->sortiePassees;
+        return $this->sortiesPassees;
     }
 
 

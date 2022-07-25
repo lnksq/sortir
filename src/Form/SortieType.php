@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Sortie;
+use App\Entity\Ville;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -32,8 +34,13 @@ class SortieType extends AbstractType
             )
             ->add('infosSortie', TextareaType::class, [
                 'label'=> 'Description et infos'
+            ])
+            ->add('ville', EntityType::class, [
+                'label' => 'ville',
+                'class'=>Ville::class,
+                'choice_label'=>'nom',
+                'mapped'=>false
             ]);
-
 
     }
 

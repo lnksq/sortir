@@ -82,13 +82,44 @@ table {
     border: 2px solid rgb(200, 200, 200);
     letter-spacing: 1px;
     font-family: sans-serif;
+
     font-size: .8rem;
 }
-input,
-textarea,
-select {
-    margin-bottom: 1rem;
-    box-sizing: border-box;
-    width: 150px;
-    max-width: 50%;
+
+button.AjoutVille
+ {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+button.modifVille
+{
+    background: none!important;
+    border: none;
+    padding: 0!important;
+/*optional*/
+    font-family: arial, sans-serif;
+/*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+}
+button.removeVille
+{
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
 }
