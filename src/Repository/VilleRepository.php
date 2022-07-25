@@ -39,6 +39,14 @@ class VilleRepository extends ServiceEntityRepository
         }
     }
 
+    public function findVilleByTxt(string $motToFind)
+    {
+        $qb = $this->createQueryBuilder('v');
+
+        return $this->createQueryBuilder('v')
+            ->andWhere('stripos(v.nom, $motToFind)');
+
+        // }
 //    /**
 //     * @return Ville[] Returns an array of Ville objects
 //     */
@@ -63,4 +71,5 @@ class VilleRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    }
 }

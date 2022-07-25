@@ -3,47 +3,33 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+              content="width=device-width, user-scalable=no, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}Sortir ! {% endblock %}</title>
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.1.0/dist/axentix.min.css">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
 
-    <!DOCTYPE html>
-    <html lang="fr">
-    <head>
-        <title>Axentix Layout</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.1.0/dist/axentix.min.css">
-    </head>
+  <div class="container">
 
-    <body class="layout">
     <header>
-        <nav class="navbar shadow-1 primary">
-            <a href="#" target="_blank" class="navbar-brand">Sortir.com</a>
-            <div class="navbar-menu ml-auto">
-                <a class="navbar-link" href="#">Villes</a>
-                <a class="navbar-link" href="#">Campus</a>
-                <a class="navbar-link" href="#">Accueil</a>
-                <a class="navbar-link" href="{{ path('') }}">Mon Profil</a>
-                <a class="navbar-link" href="#">Se déconnecter</a>
-            </div>
-        </nav>
+        {% include 'inc/nav.html.twig' %}
     </header>
 
     <main>
         {% block body %}{% endblock %}
+
     </main>
 
     <footer class="footer primary">
         Copyright © 2022 - Example
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/axentix@2.1.0/dist/axentix.min.js"></script>
-    </body>
-    </html>
+  </div>
+
 
 
         <script src="https://cdn.jsdelivr.net/npm/axentix@2.1.0/dist/axentix.min.js"></script>
