@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Sortie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Proxies\__CG__\App\Entity\Campus;
 
 /**
  * @extends ServiceEntityRepository<Sortie>
@@ -42,7 +43,8 @@ class SortieRepository extends ServiceEntityRepository
 
     public function findSorties()
     {
-        //creer request
+//        return $this->createQueryBuilder('s')
+//            ->andWhere('s.campus')
     }
 //    /**
 //     * @return Sortie[] Returns an array of Sortie objects

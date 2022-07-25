@@ -10,8 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function PHPUnit\Framework\isTrue;
 
 class VilleController extends AbstractController
+
+
 {
     #[Route('/villes', name:'main_villes')]
 
@@ -54,7 +57,14 @@ public function removeVille(int $id, EntityManagerInterface $entityManager, Vill
 
 }
 
+public function modifVille($id, Request $request, VilleRepository $villeRepository)
+{
+    $ville = $this->$villeRepository->findOneBy(['id' => $id]);
+    $data = $request->getContent();
 
+    empty($data['nom'])? isTrue() : $ville->setNom ($data['nom']);
+    empty($data['codePostal'])? isTrue() : $ville->setCodePostal ($data['nom']);
+}
 
     /*public function ajoutVille(Request $request, EntityManagerInterface $entityManager): Response
     {

@@ -35,9 +35,7 @@ class SortieController extends AbstractController
 
         if ($rechercheForm->isSubmitted() && $rechercheForm->isValid()) {
 
-            if( $rechercheForm->get('campus') != null)
-            $entityManager->persist($filtresSorties);
-            $entityManager->flush();
+
         }
         return $this->render('sortie/list.html.twig', [
             'rechercheForm' => $rechercheForm->createView(),
