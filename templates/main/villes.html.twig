@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <h1>Gérer les villes</h1>
+    <div>Filtre les ville</div>
+    <p>Le nom contient : </p>
+
+    <div> </div>
+
+
+    <Section class="List villes">
+        <table>
+                <tr>
+                <th scope="col">Ville</th>
+                <th scope="col">Code postal</th>
+                <th scope="col">Actions</th>
+            </tr>
+            {%  for ville in villes %}
+            <tr>
+                <th>{{ ville.nom }}</th>
+                <th>{{ ville.codePostal }}</th>
+                <th><a href=""> Modifier</a><a href="{{ path('main_villes_delete', {'id':ville.id}) }}">Supprimer</a> </th>
+            </tr>
+            {%  endfor %}
+            {{ form_start(villeForm) }}
+            <tr>
+                <th>{{ form_widget(villeForm.nom) }}</th>
+                <th>{{ form_widget(villeForm.codePostal) }}</th>
+                <th><button class="AjoutVille"> Ajouter </button></th>
+            </tr>
+            {{ form_end(villeForm) }}
+        </table>
+
+    </Section>
+{% endblock %}
+
