@@ -3,11 +3,11 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <h1>Mon Profil</h1>
+    {{ form_start(modifForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_widget(registrationForm)}}
 
+    {{ form_widget(modifForm)}}
         <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        {{ form_end(modifForm) }}
 {% endblock %}

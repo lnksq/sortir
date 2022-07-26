@@ -42,7 +42,7 @@ class VilleController extends AbstractController
 
     }
 
-#[Route('/villes/delete/{id}', name:'main_villes_delete')]
+#[Route('/villes/delete/{id}', name:'villes_delete')]
 
 
 

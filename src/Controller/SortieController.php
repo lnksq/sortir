@@ -48,6 +48,7 @@ class SortieController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/create", name="create")
      */
@@ -69,6 +70,7 @@ class SortieController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/details/{id}", name="details")
      */
@@ -82,22 +84,7 @@ class SortieController extends AbstractController
         ]);
     }
 
-   /* public function recherche(Request $request, EntityManagerInterface $entityManager) : Response{
-        $filtresSorties = new FiltresSorties();
-        $rechercheForm = $this->createForm(FiltreSortieType::class, $filtresSorties);
 
-        $rechercheForm->handleRequest($request);
-
-        if ($rechercheForm->isSubmitted() && $rechercheForm->isValid()) {
-            $entityManager->persist($filtresSorties);
-            $entityManager->flush();
-        }
-
-
-        return $this->render('sortie/list.html.twig', [
-            'rechercheForm' => $rechercheForm->createView()
-        ]);
-    }*/
 
 
 
