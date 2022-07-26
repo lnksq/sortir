@@ -2,82 +2,147 @@
 
 namespace App\Form\model;
 
+use App\Entity\Campus;
 use phpDocumentor\Reflection\Types\Boolean;
-use Symfony\Component\Form\AbstractType;
 
-class FiltresSorties extends AbstractType
+
+class FiltresSorties
 {
-    private ?string $campus;
-    private ?string $motRecherche;
-    private ?\DateTimeInterface $premiereDate;
-    private ?\DateTimeInterface $derniereDate;
-    private ?Boolean $organisateur;
-    private ?Boolean $inscrit;
-    private ?Boolean $pasInscrit;
-    private ?Boolean $sortiesPassees;
+    private  $campus;
+    private  $motRecherche;
+    private  $premiereDate;
+    private  $derniereDate;
+    private  $organisateur;
+    private  $inscrit;
+    private  $pasInscrit;
+    private  $sortiesPassees;
 
     /**
-     * @return string|null
+     * @return mixed
      */
-    public function getCampus(): ?string
+    public function getCampus()
     {
         return $this->campus;
     }
 
     /**
-     * @return string|null
+     * @param mixed $campus
      */
-    public function getMotRecherche(): ?string
+    public function setCampus($campus): void
+    {
+        $this->campus = $campus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMotRecherche()
     {
         return $this->motRecherche;
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @param mixed $motRecherche
      */
-    public function getPremiereDate(): ?\DateTimeInterface
+    public function setMotRecherche($motRecherche): void
+    {
+        $this->motRecherche = $motRecherche;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPremiereDate()
     {
         return $this->premiereDate;
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @param mixed $premiereDate
      */
-    public function getDerniereDate(): ?\DateTimeInterface
+    public function setPremiereDate($premiereDate): void
+    {
+        $this->premiereDate = $premiereDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDerniereDate()
     {
         return $this->derniereDate;
     }
 
     /**
-     * @return bool|null
+     * @param mixed $derniereDate
      */
-    public function getOrganisateur(): ?bool
+    public function setDerniereDate($derniereDate): void
+    {
+        $this->derniereDate = $derniereDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrganisateur()
     {
         return $this->organisateur;
     }
 
     /**
-     * @return bool|null
+     * @param mixed $organisateur
      */
-    public function getInscrit(): ?bool
+    public function setOrganisateur($organisateur): void
+    {
+        $this->organisateur = $organisateur;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInscrit()
     {
         return $this->inscrit;
     }
 
     /**
-     * @return bool|null
+     * @param mixed $inscrit
      */
-    public function getPasInscrit(): ?bool
+    public function setInscrit($inscrit): void
+    {
+        $this->inscrit = $inscrit;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPasInscrit()
     {
         return $this->pasInscrit;
     }
 
     /**
-     * @return bool|null
+     * @param mixed $pasInscrit
      */
-    public function getSortiesPassees(): ?bool
+    public function setPasInscrit($pasInscrit): void
+    {
+        $this->pasInscrit = $pasInscrit;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSortiesPassees()
     {
         return $this->sortiesPassees;
+    }
+
+    /**
+     * @param mixed $sortiesPassees
+     */
+    public function setSortiesPassees($sortiesPassees): void
+    {
+        $this->sortiesPassees = $sortiesPassees;
     }
 
 
