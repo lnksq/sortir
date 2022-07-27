@@ -125,7 +125,7 @@ class Sortie
         return $this->etat;
     }
 
-    public function setEtat(?Etat $etat): self
+    public function setEtat(Etat $etat): self
     {
         $this->etat = $etat;
 
