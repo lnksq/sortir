@@ -58,6 +58,8 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $user->setRoles(["ROLE_USER"]);
+
             $entityManager->flush();
 
             return $userAuthenticator->authenticateUser(
@@ -69,38 +71,9 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'modifForm' => $modifForm->createView(),
+
         ]);
     }
 }
 
- /*   #[Route('/register/update/{id}', name: 'register_update')]
-    public function update(int                         $id, Request $request, EntityManagerInterface $entityManager, ParticipantRepository $participantRepository,
-                           UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator): Response
-    {
 
-       -------------- $participant = $participantRepository->find($id);
-
-
-       ------------- $modifForm = $this->createForm(RegistrationFormType::class, $participant);
-      ---------------  $modifForm->handleRequest($request);
-
-       -------------- if ($modifForm->isSubmitted() && $modifForm->isValid()) {
-         ------------   $participant->setPassword(
-               --------- $userPasswordHasher->hashPassword(
-              -----------      $participant,
-               -----------     $modifForm->get('password')->getData()
-             ------------   ));
-          -----------  $entityManager->flush();
-            ---------return $userAuthenticator->authenticateUser(
-           ----------     $participant,
-           -----------     $userAuthenticator,
-            -----------    $request
-           ---------- );
-        }
-        return $this->render('registration/register.html.twig', [
-            'participant' => $participant,
-            'modifForm' => $modifForm->createView(),
-            'id' => $participant->getId()
-        ]);
-    }
-}*/
