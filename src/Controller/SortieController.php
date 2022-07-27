@@ -8,9 +8,11 @@ use App\Form\SortieType;
 use App\Form\FiltreSortieType;
 use App\Repository\SortieRepository;
 
+use DeepCopy\TypeFilter\TypeFilter;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,25 +27,27 @@ class SortieController extends AbstractController
      * @Route("/list", name="list"), methods={"GET"}
      */
 
-    public function list(SortieRepository $sortieRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function list(SortieRepository $sortieRepository, Request $request, EntityManagerInterface $entityManager, FormFactoryInterface $formFactory): Response
     {
-        $sorties= $sortieRepository->findBy([], [ 'dateHeureDebut' => 'DESC'], 20);
+
         $filtresSorties = new FiltresSorties();
+
+
         $rechercheForm = $this->createForm(FiltreSortieType::class, $filtresSorties);
 
         $rechercheForm->handleRequest($request);
 
         if ($rechercheForm->isSubmitted() && $rechercheForm->isValid()) {
-
-            if( $rechercheForm->get('campus') != null)
-            $entityManager->persist($filtresSorties);
-            $entityManager->flush();
+           $sorties= $sortieRepository->findSorties($filtresSorties );//$this->getUser()
+        }else{
+            $sorties= $sortieRepository->findSorties($filtresSorties); //$this->getUser()
         }
         return $this->render('sortie/list.html.twig', [
             'rechercheForm' => $rechercheForm->createView(),
             "sorties" => $sorties
         ]);
     }
+
 
     /**
      * @Route("/create", name="create")
@@ -66,6 +70,7 @@ class SortieController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/details/{id}", name="details")
      */
@@ -79,22 +84,7 @@ class SortieController extends AbstractController
         ]);
     }
 
-   /* public function recherche(Request $request, EntityManagerInterface $entityManager) : Response{
-        $filtresSorties = new FiltresSorties();
-        $rechercheForm = $this->createForm(FiltreSortieType::class, $filtresSorties);
 
-        $rechercheForm->handleRequest($request);
-
-        if ($rechercheForm->isSubmitted() && $rechercheForm->isValid()) {
-            $entityManager->persist($filtresSorties);
-            $entityManager->flush();
-        }
-
-
-        return $this->render('sortie/list.html.twig', [
-            'rechercheForm' => $rechercheForm->createView()
-        ]);
-    }*/
 
 
 

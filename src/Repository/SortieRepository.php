@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Sortie;
+use App\Form\model\FiltresSorties;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -40,10 +41,67 @@ class SortieRepository extends ServiceEntityRepository
     }
 
 
-    public function findSorties()
+    public function findSorties(FiltresSorties $filtresSorties )//User $user
     {
-        //creer request
+        $qb = $this->createQueryBuilder('s');
+
+        if ($filtresSorties->getCampus()) {
+            $qb
+                ->where("s.campus = :campus")
+                ->setParameter("campus", $filtresSorties->getCampus());
+        }
+        if ($filtresSorties->getMotRecherche()) {
+            $qb
+                ->andWhere("s.nom LIKE :motRecherche")
+                ->setParameter('motRecherche', '%' . $filtresSorties->getMotRecherche() . '%');
+        }
+        if($filtresSorties->getPremiereDate() && $filtresSorties->getDerniereDate()) {
+           $qb
+               ->andWhere("s.dateHeureDebut > :premiereDate and s.dateHeureDebut < :derniereDate")
+                ->setParameter('premiereDate', $filtresSorties->getPremiereDate())
+               ->setParameter('derniereDate', $filtresSorties->getDerniereDate());
+
+        }
+        return $qb->getQuery()->getResult();
     }
+}
+//
+//
+//        if ($filtresSorties->getOrganisateur() ){
+//
+//        }
+//
+//        if($filtresSorties->getInscrit()) {
+//        }
+//
+//        if($filtresSorties->getPasInscrit()){
+//        }
+//
+//        if($filtresSorties->getSortiesPassees()) {
+//        }
+//
+//        }
+
+
+
+
+
+
+
+
+           // $qb->expr()->orX(
+               // $qb->expr()
+              // $qb->expr()->isNotNull('s.date), ));
+        
+       // }
+    //}
+            
+
+           
+                
+        //return $qb->getQuery()->getResult();
+
+
 //    /**
 //     * @return Sortie[] Returns an array of Sortie objects
 //     */
@@ -68,4 +126,4 @@ class SortieRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}
+
