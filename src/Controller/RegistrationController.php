@@ -7,16 +7,18 @@ use App\Repository\ParticipantRepository;
 use App\Security\AppAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class RegistrationController extends AbstractController
 {
     #[Route('/register/update/{id}', name: 'register_update')]
-    public function register(int $id,ParticipantRepository $participantRepository,Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(int $id,ParticipantRepository $participantRepository,Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $user = $participantRepository->find($id);
 
@@ -24,6 +26,31 @@ class RegistrationController extends AbstractController
         $modifForm->handleRequest($request);
 
         if ($modifForm->isSubmitted() && $modifForm->isValid()) {
+
+            $photo = $modifForm->get('photo')->getData();
+
+            // this condition is needed because the 'brochure' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($photo) {
+                $originalFilename = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$photo->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $photo->move(
+                        $this->getParameter('user_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $user->setImage($newFilename);
+            }
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
