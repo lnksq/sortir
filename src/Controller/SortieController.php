@@ -67,6 +67,7 @@ class SortieController extends AbstractController
                 $etat= $etatRepository->findOneBy(["libelle"=>"Créée"]);
                 $sortie->setEtat($etat);
                 $entityManager->persist($sortie);
+
             $entityManager->flush();
 
         } elseif ($sortieForm->get('publierSortie')->isClicked()){
