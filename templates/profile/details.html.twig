@@ -12,6 +12,6 @@
     <div> <label> Email :</label> {{ user.email }}</div>
     <div> <label> Campus </label>{{ user.campus.nom }}</div>
 
-    <a href="{{ path('register_update', ['id'=> user.id]) }}">Modifier le profile</a>
-    <button type="button" class="btn" name="modifProfil"> Modifier le profile</button>
+    <a href="{{ path('register_update', ['id'=> user.id]) }}">Modifier le profil</a>
+    <button type="button" class="btn" name="modifProfil"> Modifier le profil</button>
 {% endblock %}
