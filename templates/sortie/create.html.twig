@@ -1,8 +1,23 @@
 {%  extends 'base.html.twig' %}
 
 {%  block body %}
-    {{  form_start(sortieForm) }}
-    {{ form_widget(sortieForm) }}
+
+    <p> Date du jour : {{ 'now'|date('d/m/Y') }}</p>
+    <p> Participant: {{ app.user.pseudo}} </p>
+    <div>
+        {{  form_start(sortieForm) }}
+        <label> Nom de la sortie : </label> {{ form_widget(sortieForm.nom) }}
+        <label> Date et heure de la sortie : </label>  {{ form_widget(sortieForm.dateHeureDebut) }}
+        <label> Date limite d'inscription : </label>  {{ form_widget(sortieForm.dateLimiteInscription) }}
+        <label> Nombre de places : </label>  {{ form_widget(sortieForm.nbInscriptionMax) }}
+        <label> Durée : </label> {{ form_widget(sortieForm.duree) }}
+        <label> Description et infos : </label> {{ form_widget(sortieForm.infosSortie) }}
+        <label> Campus </label> {{ form_widget(sortieForm.campus) }}
+        <label> Ville : </label> {{ form_widget(sortieForm.ville) }}
+        <label> Lieu : </label>{{ form_widget(sortieForm.lieu) }}
+
+
+    </div>
     <button>Enregistrer</button>
     {{ form_end(sortieForm) }}
 {%  endblock %}

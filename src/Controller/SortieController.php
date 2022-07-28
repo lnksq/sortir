@@ -6,6 +6,7 @@ use App\Entity\Sortie;
 use App\Form\model\FiltresSorties;
 use App\Form\SortieType;
 use App\Form\FiltreSortieType;
+use App\Repository\EtatRepository;
 use App\Repository\SortieRepository;
 
 use DeepCopy\TypeFilter\TypeFilter;
@@ -52,7 +53,7 @@ class SortieController extends AbstractController
     /**
      * @Route("/create", name="create")
      */
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
+    public function create(Request $request, EntityManagerInterface $entityManager, EtatRepository $etatRepository): Response
     {
         $sortie = new Sortie();
 
@@ -62,9 +63,25 @@ class SortieController extends AbstractController
         $sortieForm->handleRequest($request);
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
+            if ($sortieForm->get('enregistrer')->isClicked()){
+                $etat= $etatRepository->findOneBy(["libelle"=>"Créée"]);
+                $sortie->setEtat($etat);
+                $entityManager->persist($sortie);
+            $entityManager->flush();
+
+        } elseif ($sortieForm->get('publierSortie')->isClicked()){
+                $etat= $etatRepository->findOneBy(["libelle"=> 'Ouverte']);
+                $sortie->setEtat($etat);
             $entityManager->persist($sortie);
             $entityManager->flush();
+        } elseif ($sortieForm->get('annuler')->isClicked()){
+
+            return $this->redirectToRoute('sortie_list');
         }
+        return $this->redirectToRoute('sortie_list');
+            }
+
+
         return $this->render('sortie/create.html.twig', [
             'sortieForm' => $sortieForm->createView()
         ]);
