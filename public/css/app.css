@@ -1,14 +1,21 @@
 body {
-    background: linear-gradient(coral, greenyellow);
-    background-attachment: fixed;
+    background: linear-gradient(white, whitesmoke) fixed;
     color: black;
     font-family: 'Crimson Text', serif;
 }
+img.resized { width: auto; height: 200px; }
 
 .container {
     max-width: 1000px;
     margin: auto;
     padding: 5px;
+}
+nav{
+    background-color: #024983;
+    height: 50px;
+    color: #DDDDDD;
+
+
 }
 
 a {
@@ -21,7 +28,7 @@ a:hover {
 }
 
 img {
-    max-width: 100%;
+    max-width: 15%;
 }
 
 body > .container {
@@ -30,8 +37,9 @@ body > .container {
     min-height: 100vh;
 }
 
-header img {
-    height: 70px;
+
+nav img {
+    height: 90px;
 }
 
 main {
@@ -42,7 +50,7 @@ nav ul {
     display: flex;
     list-style: none;
     padding-left: 0;
-    background-color: indigo;
+
 }
 
 nav li {
@@ -52,25 +60,29 @@ nav li {
 
 td,
 th {
-    border: 1px solid indigo;
+    border: 1px solid black;
     padding: 10px;
 }
 
 td {
     text-align: center;
 }
-
+tr{
+    background-color: #999999;
+    color: #DDDDDD;
+}
 tr:nth-child(even) {
-    background-color: darkcyan;
+    background-color: gray;
+    color: black;
 }
 
 th[scope="col"] {
-    background-color: indigo;
+    background-color: black;
     color: #fff;
 }
 
 th[scope="row"] {
-    background-color: indigo;;
+    background-color: black;
 }
 
 caption {
@@ -80,7 +92,7 @@ caption {
 
 table {
     border-collapse: collapse;
-    border: 2px solid indigo;
+    border: 2px solid black;
     letter-spacing: 1px;
     font-family: sans-serif;
 
@@ -95,6 +107,7 @@ button.AjoutVille
     /*optional*/
     font-family: arial, sans-serif;
     /*input has OS specific font-family*/
+    background-color: black;
     color: indigo;
     text-decoration: underline;
     cursor: pointer;
@@ -124,6 +137,9 @@ button.removeVille
     text-decoration: underline;
     cursor: pointer;
 }
-.footer primary{
-    background-color: indigo;
+
+
+.centree{
+    margin: 0 auto;
+
 }
