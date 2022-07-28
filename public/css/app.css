@@ -123,10 +123,3 @@ button.removeVille
     text-decoration: underline;
     cursor: pointer;
 }
-
-.details{
-    display: inline-block;
-    width: 200px;
-    padding: 0.5rem
-  ;
-}
