@@ -1,19 +1,40 @@
+
+
 {% extends 'base.html.twig' %}
 
 {%  block body %}
-    <p>Date du jour {{ 'now'|date('d/m/Y')}}</p>
-    <p>participant : {{ app.user.nom }}</p>
+    <div class="partData">
+        <p>Date du jour {{ 'now'|date('d/m/Y')}}</p>
+        <p>Participant : {{ app.user.nom }}</p>
+    </div>
+
     <Section class="recherche-sorties">
-        {{ form_start(rechercheForm) }}
-        {{ form_widget(rechercheForm) }}
-        <button> Rechercher </button>
-        {{ form_end(rechercheForm) }}
+        <p><strong>Filtrer les sorties</strong></p>
+        <div class="container">
+            {{ form_start(rechercheForm) }}
+            <div class="col-sm-3">
+                <label>Campus</label> {{ form_widget(rechercheForm.campus) }}
+                {{ form_widget(rechercheForm.motRecherche) }}
+                {{ form_widget(rechercheForm.premiereDate) }}
+                {{ form_widget(rechercheForm.derniereDate) }}
+            </div>
+            <div class="col sm-3">
+                {{ form_widget(rechercheForm.organisateur) }}
+                {{ form_widget(rechercheForm.inscrit) }}
+                {{ form_widget(rechercheForm.pasInscrit) }}
+                {{ form_widget(rechercheForm.SortiesPasses) }}
+            </div>
+            <div class="col sm-3">
+                <button class=".btn-lg"> Rechercher </button>
+                {{ form_end(rechercheForm) }}
+            </div>
+        </div>
     </Section>
 
 
     <section class="sorties-list">
-           <table>
-            <caption> Affichage de toutes les sorties</caption>
+        <table>
+
             <tr>
                 <th scope="col">Nom de la sortie</th>
                 <th scope="col">Date de la sortie</th>
@@ -24,22 +45,25 @@
                 <th scope="col">Organisateur</th>
                 <th scope="col">Actions</th>
             </tr>
-               {%  for sortie in sorties %}
-                   <tr>
-                   <td> {{ sortie.nom }}</td>
-                   <td> {{ sortie.dateHeureDebut | date('d/m/Y H:i') }}</td>
-                   <td> {{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>
-                   <td> {{ sortie.nbInscriptionMax }}</td>
-                   <td>{{ sortie.etat.libelle }}</td>
-                   <td> </td>
-                   <td> </td>
-                   <td>
-                       {%  if(sortie.etat.libelle != "Créée") %}
-                       <a href="{{  path('sortie_details', {'id': sortie.id}) }}" title="Afficher une Sortie">Afficher</a></td>
-                       {% endif %}
-                   </tr>
+            {%  for sortie in sorties %}
+                <tr>
+                    <td> {{ sortie.nom }}</td>
+                    <td> {{ sortie.dateHeureDebut | date('d/m/Y H:i') }}</td>
+                    <td> {{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>
+                    <td> {{ sortie.nbInscriptionMax }}</td>
+                    <td>{{ sortie.etat.libelle }}</td>
+                    <td> </td>
+                    <td> </td>
+                    <td>
+                        {%  if(sortie.etat.libelle != "Créée") %}
+                        <a href="{{  path('sortie_details', {'id': sortie.id}) }}" title="Afficher une Sortie">Afficher</a></td>
+                    {% endif %}
+                </tr>
             {%  endfor %}
         </table>
-        <a href="{{ path('sortie_create') }}">Créer une sortie</a>
+        <a href="{{ path('sortie_create') }} " class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Créer une sortie</a>
     </section>
 {% endblock %}
+
+
+

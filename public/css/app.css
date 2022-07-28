@@ -71,17 +71,20 @@ td {
     text-align: center;
 }
 tr{
-    background-color: #999999;
-    color: #DDDDDD;
-}
-tr:nth-child(even) {
-    background-color: gray;
+    background-color: white;
     color: black;
+}
+tr:nth-child {//(even)
+    background-color: white;
+    color: black;
+}
+.partData{
+    float: right;
 }
 
 th[scope="col"] {
-    background-color: black;
-    color: #fff;
+    background-color: coral;
+    color: black;
 }
 
 th[scope="row"] {
@@ -95,11 +98,11 @@ caption {
 
 table {
     border-collapse: collapse;
-    border: 2px solid black;
+    border: 1px solid black;
     letter-spacing: 1px;
     font-family: sans-serif;
-
     font-size: .8rem;
+    margin-bottom: 2px;
 }
 
 button.AjoutVille
