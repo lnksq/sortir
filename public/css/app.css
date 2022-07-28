@@ -1,7 +1,7 @@
 body {
     background: linear-gradient(white, whitesmoke) fixed;
     color: black;
-    font-family: 'Crimson Text', serif;
+    font-family: 'PT Serif', serif;
 }
 img.resized { width: auto; height: 200px; }
 
@@ -14,6 +14,9 @@ nav{
     background-color: #024983;
     height: 50px;
     color: #DDDDDD;
+    display: flex;
+    list-style: none;
+    padding-left: 0;
 
 
 }
