@@ -70,13 +70,13 @@ class SortieType extends AbstractType
                 'choice_label' => 'longitude',
                 'mapped' => false
             ])
-            ->add('enregister', SubmitType::class, [
+            ->add('enregistrer', SubmitType::class, [
                 'label'=>'Enregistrer'
             ])
             ->add('publierSortie', SubmitType::class, [
                 'label'=>'Publier la Sortie'
             ])
-            ->add('Annuler', SubmitType::class, [
+            ->add('annuler', SubmitType::class, [
                 'label'=>'Annuler'
             ]);
 
