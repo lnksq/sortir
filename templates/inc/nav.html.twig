@@ -4,8 +4,10 @@
     <div class="navbar-menu ml-auto">
     <ul>
         <li> <a class="navbar-link" href="{{ path('sortie_list') }}" title="Sorties">Sorties</a></li>
+        {% if is_granted('ROLE_ADMIN') %}
         <li> <a class="navbar-link" href="#" title="Villes">Villes</a></li>
         <li><a class="navbar-link" href="#" title="Campus">Campus</a></li>
+        {% endif %}
         <li><a class="navbar-link" href="#" title="Accueil">Accueil</a></li>
         <li><a class="navbar-link" href="#" title="Mon profil">Mon Profil</a></li>
         <li><a class="navbar-link" href="{{ path('app_logout') }}" title="Deconnession ">Se déconnecter</a></li>

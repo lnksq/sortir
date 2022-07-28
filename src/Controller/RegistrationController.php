@@ -75,6 +75,15 @@ class RegistrationController extends AbstractController
     'participant'=>$participant
         ]);
     }
+    #[Route('/register/profile/{id}', name: 'register_affiche')]
+    public function AfficheProfile(int $id, ParticipantRepository $participantRepository){
+        $user = $participantRepository->find($id);
+
+        return $this->render('profile/details.html.twig', [
+            'user'=> $user
+            ]);
+
+    }
 }
 
 
