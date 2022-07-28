@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(#d7d9f2, lightgrey);
+    background: linear-gradient(coral, greenyellow);
     background-attachment: fixed;
     color: black;
     font-family: 'Crimson Text', serif;
@@ -42,6 +42,7 @@ nav ul {
     display: flex;
     list-style: none;
     padding-left: 0;
+    background-color: indigo;
 }
 
 nav li {
@@ -51,7 +52,7 @@ nav li {
 
 td,
 th {
-    border: 1px solid rgb(190, 190, 190);
+    border: 1px solid indigo;
     padding: 10px;
 }
 
@@ -60,16 +61,16 @@ td {
 }
 
 tr:nth-child(even) {
-    background-color: #eee;
+    background-color: darkcyan;
 }
 
 th[scope="col"] {
-    background-color: #696969;
+    background-color: indigo;
     color: #fff;
 }
 
 th[scope="row"] {
-    background-color: #d7d9f2;
+    background-color: indigo;;
 }
 
 caption {
@@ -79,7 +80,7 @@ caption {
 
 table {
     border-collapse: collapse;
-    border: 2px solid rgb(200, 200, 200);
+    border: 2px solid indigo;
     letter-spacing: 1px;
     font-family: sans-serif;
 
@@ -94,7 +95,7 @@ button.AjoutVille
     /*optional*/
     font-family: arial, sans-serif;
     /*input has OS specific font-family*/
-    color: #069;
+    color: indigo;
     text-decoration: underline;
     cursor: pointer;
 }
@@ -107,7 +108,7 @@ button.modifVille
 /*optional*/
     font-family: arial, sans-serif;
 /*input has OS specific font-family*/
-    color: #069;
+    color: indigo;
     text-decoration: underline;
     cursor: pointer;
 }
@@ -119,7 +120,10 @@ button.removeVille
     /*optional*/
     font-family: arial, sans-serif;
     /*input has OS specific font-family*/
-    color: #069;
+    color: indigo;
     text-decoration: underline;
     cursor: pointer;
+}
+.footer primary{
+    background-color: indigo;
 }

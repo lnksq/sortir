@@ -44,6 +44,9 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 30)]
     private ?string $pseudo = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -190,6 +193,15 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->pseudo = $pseudo;
 
+        return $this;
+    }
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
         return $this;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Participant;
 use App\Form\RegistrationFormType;
 use App\Repository\ParticipantRepository;
 use App\Security\AppAuthenticator;
@@ -18,7 +19,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register/update/{id}', name: 'register_update')]
-    public function register(int $id,ParticipantRepository $participantRepository,Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function register(int $id,ParticipantRepository $participantRepository,Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager, SluggerInterface $slugger, Participant $participant): Response
     {
         $user = $participantRepository->find($id);
 
@@ -71,8 +72,17 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'modifForm' => $modifForm->createView(),
-
+    'participant'=>$participant
         ]);
+    }
+    #[Route('/register/profile/{id}', name: 'register_affiche')]
+    public function AfficheProfile(int $id, ParticipantRepository $participantRepository){
+        $user = $participantRepository->find($id);
+
+        return $this->render('profile/details.html.twig', [
+            'user'=> $user
+            ]);
+
     }
 }
 
