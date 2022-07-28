@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {%  block body %}
-    <p>Date do jour {{ 'now'|date('d/m/Y')}}</p>
+    <p>Date du jour {{ 'now'|date('d/m/Y')}}</p>
     <p>participant : {{ app.user.nom }}</p>
     <Section class="recherche-sorties">
         {{ form_start(rechercheForm) }}

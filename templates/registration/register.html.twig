@@ -1,14 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register {{ parent() }}{% endblock %}
 
 {% block body %}
 
-    <h1>Mon Profil</h1>
+    <h1 class="centree">Mon Profil</h1>
     {{ form_start(modifForm) }}
 
 
     {{ form_widget(modifForm)}}
         <button type="submit" class="btn">Register</button>
         {{ form_end(modifForm) }}
+
+
 {% endblock %}
