@@ -7,16 +7,20 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>{% block title %}Sortir ! {% endblock %}</title>
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.1.0/dist/axentix.min.css">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+        <link rel="icon" href="{{ asset('img/Sortir.com[2968].png') }}"
 
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-
-  <div class="container">
-
+    <div class="container">
     <header>
+        <h1><a href="{{ path('app_sortir') }}"><img src="{{ asset('img/Sortir.com[2968].png') }}"> </a></h1>
         {% include 'inc/nav.html.twig' %}
     </header>
 

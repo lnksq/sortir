@@ -79,6 +79,9 @@ class RegistrationController extends AbstractController
     public function AfficheProfile(int $id, ParticipantRepository $participantRepository){
         $user = $participantRepository->find($id);
 
+
+       // if ($sortieForm->get('enregistrer')->isClicked()){
+
         return $this->render('profile/details.html.twig', [
             'user'=> $user
             ]);
