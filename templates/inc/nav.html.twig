@@ -1,14 +1,16 @@
 
-<nav>
-    <ul>
-        <li> <a class="navbar-link" href="{{ path('sortie_list') }}" title="Sorties">Sorties</a></li>
-        {% if is_granted('ROLE_ADMIN') %}
-        <li> <a class="navbar-link" href="#" title="Villes">Villes</a></li>
-        <li><a class="navbar-link" href="#" title="Campus">Campus</a></li>
-        {% endif %}
-        <li><a class="navbar-link" href="#" title="Accueil">Accueil</a></li>
-        <li><a class="navbar-link" href="#" title="#">Mon Profil</a></li>
-        <li><a class="navbar-link" href="{{ path('app_logout') }}" title="Deconnession ">Se déconnecter</a></li>
-    </ul>
-
+<nav class="navbar">
+    <a href="{{ path('sortie_list') }}" class="logo">SORTIR.COM</a>
+    <div class="nav-links">
+        <ul>
+            <li><a href="{{ path('sortie_list') }}">Sorties</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="#">Villes</a></li>
+            <li><a href="#">Campus</a></li>
+            {% endif %}
+            <li class="active"><a href="#">Accueil</a></li>
+            <li><a href="#">Mon Profil</a></li>
+            <li><a href="{{ path('app_logout') }}" title="Deconnexion">Se déconnecter</a></li>
+        </ul>
+    </div>
 </nav>
