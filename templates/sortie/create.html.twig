@@ -1,14 +1,19 @@
 {%  extends 'base.html.twig' %}
 
 {%  block body %}
-
-
-    <div class="container">
-        <div class="row row-cols-2">
-        {{  form_start(sortieForm) }}
-       <div class="col">
-           <div><label> Nom de la sortie : </label> {{ form_widget(sortieForm.nom) }}<div>
-               <div> <label> Date et heure de la sortie : </label>  {{ form_widget(sortieForm.dateHeureDebut) }}</div>
+    {{  form_start(sortieForm) }}
+    <h1 class="text-center my-3"> Créer une sortie</h1>
+    <div class="jumbotron">
+        <div class="row justify-content-around">
+             <div class="col-4">
+                 <p><span class="font-weight-bold"> Nom de la sortie : </span> {{ form_widget(sortieForm.nom) }}</p>
+             </div>
+            <div class="col-4">
+                <p><span class="font-weight-bold">Campus :</span></p>
+            </div>
+             <div class="col-4">
+                  <p> <span class="font-weight-bold"> Date et heure de la sortie : </span>  {{ form_widget(sortieForm.dateHeureDebut) }}</p>
+             </div>
                <div> <label> Date limite d'inscription : </label>  {{ form_widget(sortieForm.dateLimiteInscription) }}</div>
                <div> <label> Nombre de places : </label>  {{ form_widget(sortieForm.nbInscriptionMax) }}</div>
                <div> <label> Durée : </label> {{ form_widget(sortieForm.duree) }} </div>
@@ -16,12 +21,10 @@
         </div>
                <div class="row row-cols-2">
            <div class="col">
-               <div><label> Campus </label> {{ form_widget(sortieForm.campus) }}</div>
-               <div><label> Ville : </label> {{ form_widget(sortieForm.ville) }}</div>
-               <div><label> Lieu : </label>{{ form_widget(sortieForm.lieu) }}</div>
+
            </div>
            </div>
-    <button>Enregistrer</button>
+
     {{ form_end(sortieForm) }}
 {%  endblock %}
 

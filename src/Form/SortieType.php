@@ -22,63 +22,19 @@ class SortieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class, [
-                'label' => 'Nom de la sortie'])
-            ->add('dateHeureDebut', DateType::class, [
-                'label' => 'Date et heure de la sortie', 'html5' => true, 'widget' => 'single_text'])
-            ->add('dateLimiteInscription', DateType::class, [
-                'label' => "Date limite d'inscription", 'html5' => true, 'widget' => 'single_text'])
-            ->add('nbInscriptionMax', NumberType::class, [
-                'label' => 'Nombre de place'
-            ])
-            ->add('duree', NumberType::class, [
-                    'label' => 'Durée'
-                ]
-            )
-            ->add('infosSortie', TextareaType::class, [
-                'label' => 'Description et infos'
-            ])
-            ->add('campus', EntityType::class, [
-                'label' => 'Campus',
-                'class' => Campus::class,
-                'choice_label' => 'nom'
-            ])
-            ->add('ville', EntityType::class, [
-                'label' => 'ville',
-                'class' => Ville::class,
-                'choice_label' => 'nom',
-                'mapped'=>false
+            ->add('nom', TextType::class)
+            ->add('dateHeureDebut', DateType::class, ['html5' => true, 'widget' => 'single_text'])
+            ->add('dateLimiteInscription', DateType::class, ['html5' => true, 'widget' => 'single_text'])
+            ->add('nbInscriptionMax', NumberType::class)
+            ->add('duree', NumberType::class)
+            ->add('infosSortie', TextareaType::class)
+            ->add('lieu', null,  ['choice_label' => 'nom'])
+            ->add('campus', EntityType::class, ['class'=>Campus::class, 'choice_label'=> 'nom' ])
 
-            ])
-            ->add('lieu', EntityType::class, [
-                'class' => Lieu::class,
-                'choice_label' => 'nom',
-                'mapped' => false
-            ])
-            ->add('rue', EntityType::class, [
-                'class' => Lieu::class,
-                'choice_label' => 'rue',
-                'mapped' => false
-            ])
-            ->add('latitude', EntityType::class, [
-                'class' => Lieu::class,
-                'choice_label' => 'latitude',
-                'mapped' => false
-            ])
-            ->add('longitude', EntityType::class, [
-                'class' => Lieu::class,
-                'choice_label' => 'longitude',
-                'mapped' => false
-            ])
-            ->add('enregistrer', SubmitType::class, [
-                'label'=>'Enregistrer'
-            ])
-            ->add('publierSortie', SubmitType::class, [
-                'label'=>'Publier la Sortie'
-            ])
-            ->add('annuler', SubmitType::class, [
-                'label'=>'Annuler'
-            ]);
+
+            ->add('enregistrer', SubmitType::class, ['label'=>'Enregistrer'])
+            ->add('publierSortie', SubmitType::class, [ 'label'=>'Publier la Sortie' ])
+            ->add('annuler', SubmitType::class, ['label'=>'Annuler' ]);
 
     }
 
@@ -86,6 +42,7 @@ class SortieType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Sortie::class,
+            'allow_extra_fields'=>true
         ]);
     }
 }

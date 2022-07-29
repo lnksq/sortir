@@ -29,7 +29,9 @@ a {
 a:hover {
     color: #BC956B;
 }
-
+.partData{
+    margin-bottom: 50px;
+}
 img {
     max-width: 15%;
 }
