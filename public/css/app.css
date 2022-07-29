@@ -198,6 +198,9 @@ header {
     height:5rem; /* Hauteur (à ajuster à tes besoins) */
 }
 
-
+.images {
+    max-width: 50%;
+    height: auto;
+}
 
 
