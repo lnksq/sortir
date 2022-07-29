@@ -9,21 +9,45 @@
                  <p><span class="font-weight-bold"> Nom de la sortie : </span> {{ form_widget(sortieForm.nom) }}</p>
              </div>
             <div class="col-4">
-                <p><span class="font-weight-bold">Campus :</span></p>
+                <p><span class="font-weight-bold">Campus :</span>{{ form_widget(sortieForm.campus) }}</p>
             </div>
+        </div>
+        <div class="row justify-content-around">
              <div class="col-4">
                   <p> <span class="font-weight-bold"> Date et heure de la sortie : </span>  {{ form_widget(sortieForm.dateHeureDebut) }}</p>
              </div>
-               <div> <label> Date limite d'inscription : </label>  {{ form_widget(sortieForm.dateLimiteInscription) }}</div>
-               <div> <label> Nombre de places : </label>  {{ form_widget(sortieForm.nbInscriptionMax) }}</div>
-               <div> <label> Durée : </label> {{ form_widget(sortieForm.duree) }} </div>
-               <div><label> Description et infos : </label> {{ form_widget(sortieForm.infosSortie) }}</div>
+            <div class="col-4">
+               <p> <span class="font-weight-bold"> Date limite d'inscription : </span>  {{ form_widget(sortieForm.dateLimiteInscription) }}</p>
+            </div>
         </div>
-               <div class="row row-cols-2">
-           <div class="col">
+        <div class="row justify-content-around">
+            <div class="col-4">
+               <p> <span> Nombre de places : </span>  {{ form_widget(sortieForm.nbInscriptionMax) }}</p>
+            </div>
+            <div class="col-4">
+               <p> <span> Durée : </span> {{ form_widget(sortieForm.duree) }} </p>
+            </div>
+        </div>
+        <div class="row justify-content-around">
+            <div class="col-4">
+               <p><span> Description et infos : </span> {{ form_widget(sortieForm.infosSortie) }}</p>
+            </div>
+            <div class="col-4">
+                <p> <span> Lieu : </span> {{ form_widget(sortieForm.lieu) }} </p>
+            </div>
+        </div>
+        <div class="row justify-content-around">
+            <div class="col-3">
+                <div> {{ form_widget(sortieForm.enregistrer) }} </div>
+            </div>
+            <div class="col-3">
+                <div> {{ form_widget(sortieForm.publierSortie) }} </div>
+            </div>
+            <div class="col-3">
+                <div> {{ form_widget(sortieForm.annuler) }} </div>
+            </div>
 
-           </div>
-           </div>
+
 
     {{ form_end(sortieForm) }}
 {%  endblock %}
