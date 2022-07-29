@@ -7,7 +7,7 @@
     <h1 class="centree">Mon Profil</h1>
     {{ form_start(modifForm) }}
 
-
+    <img src="{{ asset('uploads/users/' ~ participant.image) }}" alt="{{ participant.nom }}" class="images">
     {{ form_widget(modifForm)}}
         <button type="submit" class="btn">Register</button>
         {{ form_end(modifForm) }}

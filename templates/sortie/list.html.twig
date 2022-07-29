@@ -1,19 +1,49 @@
+
+
 {% extends 'base.html.twig' %}
 
 {%  block body %}
-    <p>Date du jour {{ 'now'|date('d/m/Y')}}</p>
-    <p>participant : {{ app.user.nom }}</p>
-    <Section class="recherche-sorties">
-        {{ form_start(rechercheForm) }}
-        {{ form_widget(rechercheForm) }}
-        <button> Rechercher </button>
-        {{ form_end(rechercheForm) }}
-    </Section>
+    <div class="partData">
+        <p>Date du jour {{ 'now'|date('d/m/Y')}}</p>
+        <p>Participant : {{ app.user.nom }}</p>
+    </div>
+    {{ form_start(rechercheForm) }}
+    <p><strong>Filtrer les sorties</strong></p>
+    <div class="jumbotron">
+        <div class="row justify-content-left">
+            <div class="col-2">
+                <p><span class="font-weight-bold"> Campus: </span> {{ form_widget(rechercheForm.campus)  }}</p>
+            </div>
+        </div>
+        <div class="row justify-content-left">
+            <div class="col-4">
+                <p><span class="font-weight-bold">Le nom de la sortie contient :</span>{{ form_widget(rechercheForm.motRecherche) }}</p>
+            </div>
+            <div class="col-6">
+                <p> <span class="font-weight-bold"> </span> {{ form_widget(rechercheForm.organisateur) }}</p>
+                <p> <span class="font-weight-bold"> </span> {{ form_widget(rechercheForm.inscrit) }}</p>
+                <p> <span class="font-weight-bold"> </span> {{ form_widget(rechercheForm.pasInscrit) }}</p>
+                <p> <span class="font-weight-bold"> </span> {{ form_widget(rechercheForm.SortiesPasses) }}</p>
+            </div>
+        </div>
+        <div class="row justify-content-left">
+            <div class="col-4">
+                <p><span class="font-weight-bold">Entre :</span>{{form_widget(rechercheForm.premiereDate) }}</p>
+            </div>
+            <div class="col-4">
+                <p><span class="font-weight-bold">Et :</span>{{form_widget(rechercheForm.derniereDate) }}</p>
+            </div>
+
+                <button class=".btn-lg"> Rechercher </button>
+                {{ form_end(rechercheForm) }}
+
+        </div>
+    </div>
 
 
     <section class="sorties-list">
-           <table>
-            <caption> Affichage de toutes les sorties</caption>
+        <table>
+
             <tr>
                 <th scope="col">Nom de la sortie</th>
                 <th scope="col">Date de la sortie</th>
@@ -24,22 +54,27 @@
                 <th scope="col">Organisateur</th>
                 <th scope="col">Actions</th>
             </tr>
-               {%  for sortie in sorties %}
-                   <tr>
-                   <td> {{ sortie.nom }}</td>
-                   <td> {{ sortie.dateHeureDebut | date('d/m/Y H:i') }}</td>
-                   <td> {{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>
-                   <td> {{ sortie.nbInscriptionMax }}</td>
-                   <td>{{ sortie.etat.libelle }}</td>
-                   <td> </td>
-                   <td> </td>
-                   <td>
-                       {%  if(sortie.etat.libelle != "Créée") %}
-                       <a href="{{  path('sortie_details', {'id': sortie.id}) }}" title="Afficher une Sortie">Afficher</a></td>
-                       {% endif %}
-                   </tr>
+            {%  for sortie in sorties %}
+                <tr>
+                    <td> {{ sortie.nom }}</td>
+                    <td> {{ sortie.dateHeureDebut | date('d/m/Y H:i') }}</td>
+                    <td> {{ sortie.dateLimiteInscription | date('d/m/Y') }}</td>
+                    <td> {{ sortie.nbInscriptionMax }}</td>
+                    <td>{{ sortie.etat.libelle }}</td>
+                    <td> </td>
+                    {% if app.user.sortiesOrganisees%}
+                    <td>x</td>
+                    {% endif %}
+                    <td>
+                        {%  if(sortie.etat.libelle != "Créée") %}
+                        <a href="{{  path('sortie_details', {'id': sortie.id}) }}" title="Afficher une Sortie">Afficher</a></td>
+                    {% endif %}
+                </tr>
             {%  endfor %}
         </table>
-        <a href="{{ path('sortie_create') }}">Créer une sortie</a>
+        <a href="{{ path('sortie_create') }} " class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Créer une sortie</a>
     </section>
 {% endblock %}
+
+
+
