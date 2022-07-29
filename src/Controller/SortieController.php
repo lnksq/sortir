@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 
 /**
@@ -30,7 +31,7 @@ class SortieController extends AbstractController
 
     public function list(SortieRepository $sortieRepository, Request $request, EntityManagerInterface $entityManager, FormFactoryInterface $formFactory): Response
     {
-
+        $participant = $request->get("participant");
         $filtresSorties = new FiltresSorties();
 
 
@@ -63,7 +64,10 @@ class SortieController extends AbstractController
         $sortieForm->handleRequest($request);
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
-            if ($sortieForm->get('enregistrer')->isClicked()){
+                $organisateur = $this->getUser();
+                $sortie->setOrganisateur($organisateur);
+                $sortie->addParticipant($organisateur);
+                if ($sortieForm->get('enregistrer')->isClicked()){
                 $etat= $etatRepository->findOneBy(["libelle"=>"Créée"]);
                 $sortie->setEtat($etat);
                 $entityManager->persist($sortie);
@@ -73,11 +77,12 @@ class SortieController extends AbstractController
         } elseif ($sortieForm->get('publierSortie')->isClicked()){
                 $etat= $etatRepository->findOneBy(["libelle"=> 'Ouverte']);
                 $sortie->setEtat($etat);
-            $entityManager->persist($sortie);
-            $entityManager->flush();
+                $entityManager->persist($sortie);
+                $entityManager->flush();
         } elseif ($sortieForm->get('annuler')->isClicked()){
+                    $etat= $etatRepository->findOneBy(["libelle"=> 'Annulée']);
+                    $sortie->setEtat($etat);
 
-            return $this->redirectToRoute('sortie_list');
         }
         return $this->redirectToRoute('sortie_list');
             }
@@ -96,14 +101,30 @@ class SortieController extends AbstractController
     public function details(int $id, SortieRepository $sortieRepository): Response
     {
         $sortie= $sortieRepository->find($id);
-
-        return $this->render('sortie/details.html.twig', [
-            "sortie" => $sortie
-        ]);
+        if($sortie != null) {
+            return $this->render('sortie/details.html.twig', [
+                "sortie" => $sortie]);
+        }else{return $this->redirectToRoute('sortie_details');}
     }
 
+    /**
+     * @Route("/join/{id}/api/join", name="join")
+     */
+
+    public function join(int $id, SerializerInterface $serializer, SortieRepository $sortieRepository, EntityManagerInterface $entityManager)
+    {
+        $sortie = $sortieRepository->find($id);
+        $participant = $this->getUser();
+        $sortie->addParticipant($participant);
+        $entityManager->persist($sortie);
+        $entityManager->flush();
+        $response= new Response();
+        $response->headers->set("Content-type", "application/jason");
+        $json= $serializer->serialize($sortie, "json", ["groups"=> "sortie"]);
+        $response->sendContent($json);
 
 
+    }
 
 
 
